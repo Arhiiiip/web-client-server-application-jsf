@@ -15,16 +15,22 @@
     </h:head>
     <h:body id="base">
         <div id="header">
-            <a>
-                Riabokon Arhip Borisovich P32302
-                Variant: 75432
-            </a>
+            <div class="headCols">
+                <div class="headCol1">
+                    <h:form id="buttonBackForm">
+                        <h:commandButton styleClass="backPageButton" id="backPageButton" action="StartPage"
+                                         value="GO BACК"/>
+                    </h:form>
+                </div>
+                <div class="headCol2">
+                    <a id="name">
+                        Riabokon Arhip Borisovich P32302
+                        Variant: 75432
+                    </a>
+                </div>
+            </div>
+
         </div>
-
-        <h:form id="buttonBackForm">
-            <h:commandButton styleClass="backPageButton" id="backPageButton" action="StartPage" value="GO BACК"/>
-        </h:form>
-
 
         <div class="meaning">
             <svg id="graph" class="graph" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +69,7 @@
                       d="M 200,50 A 150,150  90 0,1 350,200 L 200,200 Z"></path>
             </svg>
         </div>
-        <div class="form">
+        <div class="bord">
             <h2 style="">Input data:</h2>
             <h:form id="form" name="form" method="post">
                 <div id="xArgumentD">
@@ -111,9 +117,8 @@
                     Y in (-3 ... 3)<br/>
                 </p>
                 <a class="error" id="error"></a>
-                <h:commandButton type="submit" class="buttonData" id="buttonShoot" value="Shoot"/>
-                <h:commandButton class="buttonData" id="buttonReset" type="button" value="Reset"/>
-
+                <h:commandButton type="submit" styleClass="buttonData" id="buttonShoot" value="Shoot"/>
+                <h:commandButton styleClass="buttonData" id="buttonReset" type="button" value="Reset"/>
             </h:form>
             <!--            <h:form>-->
             <!--                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>-->
