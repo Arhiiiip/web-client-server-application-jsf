@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:head>
+        <title>Lab 3 Riabokon</title>
+        <h:outputScript library="js" src="jquery.js"/>
+        <h:outputStylesheet library="styles" name="main.css"/>
+
+    </h:head>
+    <h:body id="base">
+        <div id="header">
+            <a>
+                Riabokon Arhip Borisovich P32302
+                Variant: 75432
+            </a>
+        </div>
+
+        <h:form id="buttonBackForm">
+            <h:commandButton styleClass="backPageButton" id="backPageButton" action="StartPage" value="GO BACК"/>
+        </h:form>
+
+
+        <div class="meaning">
+            <svg id="graph" class="graph" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+                <!--Coordinates axes-->
+                <line stroke="black" x1="0" x2="400" y1="200" y2="200"></line>
+                <line stroke="black" x1="200" x2="200" y1="0" y2="400"></line>
+                <!--Axis directions-->
+                <polygon fill="black" stroke="black" points="400,200 385,205 385,195"></polygon>
+                <polygon fill="black" stroke="black" points="200,0 195,10 205,10"></polygon>
+                <!--Section-->
+                <line stroke="black" x1="50" x2="50" y1="195" y2="205"></line>
+                <line stroke="black" x1="125" x2="125" y1="195" y2="205"></line>
+                <line stroke="black" x1="275" x2="275" y1="195" y2="205"></line>
+                <line stroke="black" x1="350" x2="350" y1="195" y2="205"></line>
+                <line stroke="black" x1="195" x2="205" y1="50" y2="50"></line>
+                <line stroke="black" x1="195" x2="205" y1="125" y2="125"></line>
+                <line stroke="black" x1="195" x2="205" y1="275" y2="275"></line>
+                <line stroke="black" x1="195" x2="205" y1="350" y2="350"></line>
+                <!-- Units -->
+                <text fill="black" x="40" y="190">-R</text>
+                <text fill="black" x="110" y="190">-R/2</text>
+                <text fill="black" x="265" y="190">R/2</text>
+                <text fill="black" x="345" y="190">R</text>
+                <text fill="black" x="210" y="54">R</text>
+                <text fill="black" x="210" y="128">R/2</text>
+                <text fill="black" x="210" y="278">-R/2</text>
+                <text fill="black" x="210" y="353">-R</text>
+                <text fill="black" x="387" y="190">X</text>
+                <text fill="black" x="210" y="10">Y</text>
+                <!--Areas-->
+                <polygon fill="#fd6d6d" fill-opacity="0.4" stroke="black"
+                         points="125,200 200,350 200,200"></polygon>
+                <polygon fill="#1d62e1" fill-opacity="0.4" stroke="black"
+                         points="50,200 50,125 200,125 200,200"></polygon>
+                <path fill="#1fce07" fill-opacity="0.4" stroke="black"
+                      d="M 200,50 A 150,150  90 0,1 350,200 L 200,200 Z"></path>
+            </svg>
+        </div>
+        <div class="form">
+            <h2 style="">Input data:</h2>
+            <h:form id="form" name="form" method="post">
+                <div id="xArgumentD">
+                    <h:outputLabel>X:
+                        <h:selectOneMenu>
+                            <f:selectItem itemValue="-5" itemLabel="-5"/>
+                            <f:selectItem itemValue="-4" itemLabel="-4"/>
+                            <f:selectItem itemValue="-3" itemLabel="-3"/>
+                            <f:selectItem itemValue="-2" itemLabel="-2"/>
+                            <f:selectItem itemValue="-1" itemLabel="-1"/>
+                            <f:selectItem itemValue="0" itemLabel="0"/>
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                        </h:selectOneMenu>
+                    </h:outputLabel>
+                </div>
+                <div id="yArgumentD">
+                    <h:outputLabel>Y:
+                        <h:inputText placeholder="-5 ... 5" maxlength="6" value="#{hitBean.y}">
+                            <f:ajax execute="@this" render="@this"/>
+                        </h:inputText>
+                    </h:outputLabel>
+                </div>
+                <div id="rArgumentD">
+                    <h:outputLabel>R:
+                        <h:commandButton label="1" value="1" class="unclicked" action="#{hitBean.setX(-2)}">
+                            <f:ajax execute="@this" render="@none"/>
+                        </h:commandButton>
+                        <h:commandButton label="1.5" value="1.5" class="unclicked" action="#{hitBean.setX(-2)}">
+                            <f:ajax execute="@this" render="@none"/>
+                        </h:commandButton>
+                        <h:commandButton label="2" value="2" class="unclicked" action="#{hitBean.setX(-2)}">
+                            <f:ajax execute="@this" render="@none"/>
+                        </h:commandButton>
+                        <h:commandButton label="2.5" value="2.5" class="unclicked" action="#{hitBean.setX(-2)}">
+                            <f:ajax execute="@this" render="@none"/>
+                        </h:commandButton>
+                        <h:commandButton label="3" value="3" class="unclicked" action="#{hitBean.setX(-2)}">
+                            <f:ajax execute="@this" render="@none"/>
+                        </h:commandButton>
+                    </h:outputLabel>
+                </div>
+                <p>
+                    Y in (-3 ... 3)<br/>
+                </p>
+                <a class="error" id="error"></a>
+                <h:commandButton type="submit" class="buttonData" id="buttonShoot" value="Shoot"/>
+                <h:commandButton class="buttonData" id="buttonReset" type="button" value="Reset"/>
+
+            </h:form>
+            <!--            <h:form>-->
+            <!--                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>-->
+            <!--                <h:inputHidden value="#{hitBean.y}" id="y_click" a:hidden="true"/>-->
+            <!--                <h:commandButton a:hidden="true" id="sendHidden" type="submit" value="Выстрел" action="#{hitBean.submitClick()}">-->
+            <!--                    <f:ajax execute="@form" render="table error graph"/>-->
+            <!--                </h:commandButton>-->
+            <!--            </h:form>-->
+        </div>
+
+        <div id="footer">
+            <p><a style="color:#ffffe5">Author: Riabokon Arhip Borisovich</a><br/>
+                <a href="mailto:rabokony@icloud.com" style="text-decoration: none;color:#ffffe5">rabokony@icloud.com</a><br/>
+                <a href="https://github.com/Arhiiiip" title="Go to the developer's github"
+                   style="text-decoration: none;color:#ffffe5">Go to the developer's github</a></p>
+        </div>
+    </h:body>
+</f:view>
+</html>

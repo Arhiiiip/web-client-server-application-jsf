@@ -1,0 +1,67 @@
+#base {
+    min-width: 900px;
+    background-color: rgba(255, 128, 0, 0.47);
+}
+
+#header {
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 1em 5%;
+    background: #2c3e50;
+    color: #fff;
+}
+
+#clock {
+
+}
+
+.nextPageButton {
+    position: absolute;
+    right: 32.5%;
+    font-size: 150%;
+    width: 35%;
+    height: 9%;
+    margin-top: 5%;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #FDBE33 #000 #D77206;
+    border-radius: 6px;
+    background: linear-gradient(#F3AE0F, #E38916) #E38916;
+    transition: 0.2s;
+}
+
+#time,#textTime {
+    font-size: 25px;
+    font-family: monospace;
+}
+
+/*commandButton:hover {*/
+/*    background: linear-gradient(#f5ae00, #f59500) #f5ae00;*/
+/*}*/
+
+/*commandButton:active {*/
+/*    background: linear-gradient(#f59500, #f5ae00) #f59500;*/
+/*}*/
+
+
+#header>a {
+    font-size: 25px;
+    font-family: monospace;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    letter-spacing: 1px;
+    padding: 0.25em 1.5%;
+    background: #3e5062;
+    color: #fff;
+}
+

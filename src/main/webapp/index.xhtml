@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Start Lab 3 Riabokon</title>
+    <h:outputScript library="js" src="jquery.js"/>
+    <h:outputStylesheet library="js" name="time.js"/>
+    <h:outputStylesheet library="styles" name="start.css"/>
+    <h:outputStylesheet library="styles" name="clock2.css"/>
+
+    <!--    <h:link rel="icon" href="resources/img/favicon.ico"/>-->
+</h:head>
+<f:view>
+    <h:body id="base">
+        <div id="header">
+            <a>
+                Riabokon Arhip Borisovich P32302
+                Variant: 75432
+            </a>
+        </div>
+
+        <div id="clock">
+            <div id="textTime">Local time:</div>
+            <div id="time">${timeBean.hour}:${timeBean.min}:${timeBean.sec} ${timeBean.day}.${timeBean.month}.${timeBean.year}</div>
+        </div>
+
+        <h:form id="form">
+            <h:commandButton styleClass="nextPageButton" id="nextPageButton" action="MainPage" value="Go to school"/>
+        </h:form>
+
+        <!--        <div class="container">-->
+
+        <!--            <ul class="numbers hours hoursFirst">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+
+        <!--            <ul class="numbers hours hoursLast">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+
+        <!--            <ul class="numbers minutes minutesFirst">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+        <!--            <ul class="numbers minutes minutesLast">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+
+        <!--            <ul class="numbers seconds secondsFirst">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+        <!--            <ul class="numbers seconds secondsLast">-->
+        <!--                <li><span>0</span></li>-->
+        <!--                <li><span>1</span></li>-->
+        <!--                <li><span>2</span></li>-->
+        <!--                <li><span>3</span></li>-->
+        <!--                <li><span>4</span></li>-->
+        <!--                <li><span>5</span></li>-->
+        <!--                <li><span>6</span></li>-->
+        <!--                <li><span>7</span></li>-->
+        <!--                <li><span>8</span></li>-->
+        <!--                <li><span>9</span></li>-->
+        <!--            </ul>-->
+        <!--        </div>-->
+
+        <div id="continueButton">
+
+        </div>
+
+        <div id="footer">
+            <p><a style="color:#ffffe5">Author: Riabokon Arhip Borisovich</a><br/>
+                <a href="mailto:rabokony@icloud.com" style="text-decoration: none;color:#ffffe5">rabokony@icloud.com</a><br/>
+                <a href="https://github.com/Arhiiiip" title="Go to the developer's github"
+                   style="text-decoration: none;color:#ffffe5">Go to the developer's github</a></p>
+        </div>
+
+    </h:body>
+</f:view>
+</html>
