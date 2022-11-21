@@ -129,6 +129,35 @@
             <!--            </h:form>-->
         </div>
 
+        <div id="history">
+            <h:dataTable class="historyTable" id="historyTable" value="#{hitBean.getHistory()}" var="response">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    #{response.x}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    #{response.y}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    #{response.r}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Time</f:facet>
+                    #{response.currentTime}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Duration</f:facet>
+                    #{response.duration}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Result</f:facet>
+                    #{response.result}
+                </h:column>
+            </h:dataTable>
+        </div>
+
         <div id="footer">
             <p><a style="color:#ffffe5">Author: Riabokon Arhip Borisovich</a><br/>
                 <a href="mailto:rabokony@icloud.com" style="text-decoration: none;color:#ffffe5">rabokony@icloud.com</a><br/>

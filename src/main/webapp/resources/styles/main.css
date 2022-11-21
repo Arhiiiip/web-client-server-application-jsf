@@ -63,7 +63,7 @@
 /*}*/
 
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
@@ -166,12 +166,12 @@
 }
 
 .historyTable {
-    grid-column: 1/1;
-    grid-row: 2;
-    margin-left: 10%;
-    margin-right: 10%;
+    /*grid-column: 1/1;*/
+    /*grid-row: 2;*/
+    margin-left: 3%;
+    margin-right: 3%;
     background-image: radial-gradient(#fd9090, #855085);
-    width: 80%;
+    width: 94%;
     height: 50%;
     margin-bottom: 5%;
 }
