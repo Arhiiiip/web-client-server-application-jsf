@@ -34,6 +34,33 @@
     transition: 0.2s;
 }
 
+.yArg {
+    border-radius:5px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+    width: 40%;
+}
+.yArg:hover {
+    border: 1px solid #aaa;
+}
+
+.xArgument{
+    border-radius: 5px;
+
+}
+
+.xArgument:hover {
+    border: 1px solid #aaa;
+}
+
+#rArg{
+    border-radius: 5px;
+}
+
+#rArg:hover {
+    border: 1px solid #aaa;
+}
+
 .buttonData {
     font-size: 150%;
     margin-top: 5%;
@@ -63,7 +90,6 @@
 /*}*/
 
 #footer {
-    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
@@ -82,11 +108,12 @@
     grid-template-columns: 50% 50%;
     grid-gap: 15%;
     grid-template-rows: auto;
-    margin-top: 5%;
+    margin-top: 1.5%;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
     width: 90%;
+    height: 70%;
 }
 
 .backPageButton {
@@ -173,7 +200,7 @@
     background-image: radial-gradient(#fd9090, #855085);
     width: 94%;
     height: 50%;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
 }
 
 .tableData {
@@ -188,4 +215,17 @@
 .rangeInput {
     width: 20%;
     height: 100%;
+}
+
+.footCols{
+    display: flex;
+}
+
+footCol1{
+    width: 95%;
+}
+
+.footCol2{
+    text-align: right;
+    width: 95%;
 }

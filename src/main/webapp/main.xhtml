@@ -3,15 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
 <f:view>
-
     <h:head>
         <title>Lab 3 Riabokon</title>
         <h:outputScript library="js" src="jquery.js"/>
         <h:outputStylesheet library="styles" name="main.css"/>
-
     </h:head>
     <h:body id="base">
         <div id="header">
@@ -33,48 +32,61 @@
         </div>
 
         <div class="meaning">
-            <svg id="graph" class="graph" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
-                <!--Coordinates axes-->
-                <line stroke="black" x1="0" x2="400" y1="200" y2="200"></line>
-                <line stroke="black" x1="200" x2="200" y1="0" y2="400"></line>
-                <!--Axis directions-->
-                <polygon fill="black" stroke="black" points="400,200 385,205 385,195"></polygon>
-                <polygon fill="black" stroke="black" points="200,0 195,10 205,10"></polygon>
-                <!--Section-->
-                <line stroke="black" x1="50" x2="50" y1="195" y2="205"></line>
-                <line stroke="black" x1="125" x2="125" y1="195" y2="205"></line>
-                <line stroke="black" x1="275" x2="275" y1="195" y2="205"></line>
-                <line stroke="black" x1="350" x2="350" y1="195" y2="205"></line>
-                <line stroke="black" x1="195" x2="205" y1="50" y2="50"></line>
-                <line stroke="black" x1="195" x2="205" y1="125" y2="125"></line>
-                <line stroke="black" x1="195" x2="205" y1="275" y2="275"></line>
-                <line stroke="black" x1="195" x2="205" y1="350" y2="350"></line>
-                <!-- Units -->
-                <text fill="black" x="40" y="190">-R</text>
-                <text fill="black" x="110" y="190">-R/2</text>
-                <text fill="black" x="265" y="190">R/2</text>
-                <text fill="black" x="345" y="190">R</text>
-                <text fill="black" x="210" y="54">R</text>
-                <text fill="black" x="210" y="128">R/2</text>
-                <text fill="black" x="210" y="278">-R/2</text>
-                <text fill="black" x="210" y="353">-R</text>
-                <text fill="black" x="387" y="190">X</text>
-                <text fill="black" x="210" y="10">Y</text>
-                <!--Areas-->
-                <polygon fill="#fd6d6d" fill-opacity="0.4" stroke="black"
-                         points="125,200 200,350 200,200"></polygon>
-                <polygon fill="#1d62e1" fill-opacity="0.4" stroke="black"
-                         points="50,200 50,125 200,125 200,200"></polygon>
-                <path fill="#1fce07" fill-opacity="0.4" stroke="black"
-                      d="M 200,50 A 150,150  90 0,1 350,200 L 200,200 Z"></path>
-            </svg>
+            <h:panelGroup rendered="true" id="graph">
+                <svg id="svg" class="svg" height="400" width="400" xmlns="http://www.w3.org/2000/svg"
+                     onclick="shot(event)">
+                    <!--- Areas -->
+                    <polygon fill="#fd6d6d" fill-opacity="0.4" stroke="black"
+                             points="#{200 - 30*hitBean.r},200 200,#{200 + 60*hitBean.r} 200,200"/>
+                    <polygon fill="#1d62e1" fill-opacity="0.4" stroke="black"
+                             points="#{200 - 60*hitBean.r},200 #{200 - 60*hitBean.r},#{200 - 30*hitBean.r} 200,#{200 - 30*hitBean.r} 200,200"/>
+                    <path fill="#1fce07" fill-opacity="0.4" stroke="black"
+                          d="M 200,#{200 - 30*hitBean.r} A #{30*hitBean.r},#{30*hitBean.r}  90 0,1 #{200 + 30*hitBean.r},200 L 200,200 Z"/>
+                    <!--- Coordinate axes -->
+                    <line stroke="black" x1="0" x2="400" y1="200" y2="200"/>
+                    <line stroke="black" x1="200" x2="200" y1="0" y2="400"/>
+                    <!--- Axis directions -->
+                    <polygon fill="black" stroke="black" points="200,0 195,10 205,10"/>
+                    <polygon fill="black" stroke="black" points="400,200 390,195 390,205"/>
+                    <!--- Segments -->
+                    <line stroke="black" x1="50" x2="50" y1="197" y2="203"/>
+                    <line stroke="black" x1="80" x2="80" y1="197" y2="203"/>
+                    <line stroke="black" x1="110" x2="110" y1="197" y2="203"/>
+                    <line stroke="black" x1="140" x2="140" y1="197" y2="203"/>
+                    <line stroke="black" x1="170" x2="170" y1="197" y2="203"/>
+
+                    <line stroke="black" x1="230" x2="230" y1="197" y2="203"/>
+                    <line stroke="black" x1="260" x2="260" y1="197" y2="203"/>
+                    <line stroke="black" x1="290" x2="290" y1="197" y2="203"/>
+                    <line stroke="black" x1="320" x2="320" y1="197" y2="203"/>
+                    <line stroke="black" x1="350" x2="350" y1="197" y2="203"/>
+
+
+                    <line stroke="black" x1="197" x2="203" y1="50" y2="50"/>
+                    <line stroke="black" x1="197" x2="203" y1="80" y2="80"/>
+                    <line stroke="black" x1="197" x2="203" y1="110" y2="110"/>
+                    <line stroke="black" x1="197" x2="203" y1="140" y2="140"/>
+                    <line stroke="black" x1="197" x2="203" y1="170" y2="170"/>
+
+                    <line stroke="black" x1="197" x2="203" y1="230" y2="230"/>
+                    <line stroke="black" x1="197" x2="203" y1="260" y2="260"/>
+                    <line stroke="black" x1="197" x2="203" y1="290" y2="290"/>
+                    <line stroke="black" x1="197" x2="203" y1="320" y2="320"/>
+                    <line stroke="black" x1="197" x2="203" y1="350" y2="350"/>
+                    <!--- Shot shadow -->
+                    <ui:repeat value="#{hitBean.getHistory()}" var="data">
+                        <circle r="3" cx="#{data.x*30 + 200}"
+                                cy="#{200 - data.y*30}" fill='#{data.result ? "#3D6C36FF" : "#FF0051FF"}'/>
+                    </ui:repeat>
+                </svg>
+            </h:panelGroup>
         </div>
         <div class="bord">
             <h2 style="">Input data:</h2>
             <h:form id="form" name="form" method="post">
                 <div id="xArgumentD">
                     <h:outputLabel>X:
-                        <h:selectOneMenu>
+                        <h:selectOneMenu id="xArgument" value="#{hitBean.x}">
                             <f:selectItem itemValue="-5" itemLabel="-5"/>
                             <f:selectItem itemValue="-4" itemLabel="-4"/>
                             <f:selectItem itemValue="-3" itemLabel="-3"/>
@@ -89,81 +101,119 @@
                 </div>
                 <div id="yArgumentD">
                     <h:outputLabel>Y:
-                        <h:inputText placeholder="-5 ... 5" maxlength="6" value="#{hitBean.y}">
-                            <f:ajax execute="@this" render="@this"/>
+                        <h:inputText a:placeholder="-5 ... 5" maxlength="6" value="#{hitBean.y}" required="true"
+                                     validatorMessage="ТЫ ЧО" styleClass="yArg" id="yArg">
+                            <f:ajax execute="@this" render="Yerrors"/>
                         </h:inputText>
                     </h:outputLabel>
                 </div>
                 <div id="rArgumentD">
                     <h:outputLabel>R:
-                        <h:commandButton label="1" value="1" class="unclicked" action="#{hitBean.setX(-2)}">
-                            <f:ajax execute="@this" render="@none"/>
+                        <h:commandButton label="1" value="1" styleClass="rArg" class="unclicked"
+                                         action="#{hitBean.setR(1)}">
+                            <f:ajax execute="@this" render="beanRadius graph"/>
                         </h:commandButton>
-                        <h:commandButton label="1.5" value="1.5" class="unclicked" action="#{hitBean.setX(-2)}">
-                            <f:ajax execute="@this" render="@none"/>
+                        <h:commandButton label="1.5" value="1.5" styleClass="rArg" class="unclicked"
+                                         action="#{hitBean.setR(1.5)}">
+                            <f:ajax execute="@this" render="beanRadius graph"/>
                         </h:commandButton>
-                        <h:commandButton label="2" value="2" class="unclicked" action="#{hitBean.setX(-2)}">
-                            <f:ajax execute="@this" render="@none"/>
+                        <h:commandButton label="2" value="2" styleClass="rArg" class="unclicked"
+                                         action="#{hitBean.setR(2)}">
+                            <f:ajax execute="@this" render="beanRadius graph"/>
                         </h:commandButton>
-                        <h:commandButton label="2.5" value="2.5" class="unclicked" action="#{hitBean.setX(-2)}">
-                            <f:ajax execute="@this" render="@none"/>
+                        <h:commandButton label="2.5" value="2.5" styleClass="rArg" class="unclicked"
+                                         action="#{hitBean.setR(2.5)}">
+                            <f:ajax execute="@this" render="beanRadius graph"/>
                         </h:commandButton>
-                        <h:commandButton label="3" value="3" class="unclicked" action="#{hitBean.setX(-2)}">
-                            <f:ajax execute="@this" render="@none"/>
+                        <h:commandButton label="3" value="3" styleClass="rArg" class="unclicked"
+                                         action="#{hitBean.setR(3)}">
+                            <f:ajax execute="@this" render="beanRadius graph"/>
                         </h:commandButton>
                     </h:outputLabel>
                 </div>
-                <p>
-                    Y in (-3 ... 3)<br/>
-                </p>
-                <a class="error" id="error"></a>
-                <h:commandButton type="submit" styleClass="buttonData" id="buttonShoot" value="Shoot"/>
-                <h:commandButton styleClass="buttonData" id="buttonReset" type="button" value="Reset"/>
+                <div>
+
+                    <!--                    <p>-->
+                    <!--                        Y in (-5 ... 5)<br/>-->
+                    <!--                    </p>-->
+
+                    <h:messages id="Yerrors" style="width: 100%; color: red; margin-top: 10px"/>
+                    <h:messages id="Xerrors" style="width: 100%; color: red; margin-top: 10px"/>
+                </div>
+
+                <a class="error" id="error"/>
+                <h:inputHidden id="beanRadius" a:hidden="true" type="hidden" value="#{hitBean.r}"/>
+                <div>
+                    <!--                                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>-->
+                    <!--                                <h:inputHidden value="#{hitBean.y}" id="y_click" a:hidden="true"/>-->
+                    <h:commandButton type="submit" styleClass="buttonData" id="buttonShoot" value="Shoot"
+                                     action="#{hitBean.submit()}"><f:ajax execute="@form"
+                                                                          render="error_x error_y error_r graph historyTable"/></h:commandButton>
+                </div>
             </h:form>
-            <!--            <h:form>-->
-            <!--                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>-->
-            <!--                <h:inputHidden value="#{hitBean.y}" id="y_click" a:hidden="true"/>-->
-            <!--                <h:commandButton a:hidden="true" id="sendHidden" type="submit" value="Выстрел" action="#{hitBean.submitClick()}">-->
-            <!--                    <f:ajax execute="@form" render="table error graph"/>-->
-            <!--                </h:commandButton>-->
-            <!--            </h:form>-->
+            <h:form id="formReset" name="form" method="post">
+                <div>
+                    <h:commandButton styleClass="buttonData" id="reset_table" value="Reset"
+                                     action="#{hitBean.resetHistory()}">
+                        <f:ajax execute="@form" render="historyTable graph"/>
+                    </h:commandButton>
+                </div>
+            </h:form>
+            <div id="errors">
+                <h:panelGroup rendered="true" id="errorD">
+                    <div id="error_x">
+                        <h:outputText value="#{hitBean.errorX.getMessage()}"/>
+                    </div>
+                    <div id="error_y">
+                        <h:outputText value="#{hitBean.errorY.getMessage()}"/>
+                    </div>
+                    <div id="error_r">
+                        <h:outputText value="#{hitBean.errorR.getMessage()}"/>
+                    </div>
+                </h:panelGroup>
+            </div>
         </div>
-
-        <div id="history">
-            <h:dataTable class="historyTable" id="historyTable" value="#{hitBean.getHistory()}" var="response">
-                <h:column>
-                    <f:facet name="header">X</f:facet>
-                    #{response.x}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Y</f:facet>
-                    #{response.y}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">R</f:facet>
-                    #{response.r}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Time</f:facet>
-                    #{response.currentTime}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Duration</f:facet>
-                    #{response.duration}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Result</f:facet>
-                    #{response.result}
-                </h:column>
-            </h:dataTable>
-        </div>
-
-        <div id="footer">
+    </h:body>
+    <div id="history">
+        <h:dataTable class="historyTable" id="historyTable" value="#{hitBean.getHistory()}" var="response">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{response.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{response.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{response.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Time</f:facet>
+                #{response.currentTime}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Duration</f:facet>
+                #{response.duration}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Result</f:facet>
+                #{response.result}
+            </h:column>
+        </h:dataTable>
+    </div>
+    <div class="footCols" id="footer">
+        <div class="footCol1">
             <p><a style="color:#ffffe5">Author: Riabokon Arhip Borisovich</a><br/>
-                <a href="mailto:rabokony@icloud.com" style="text-decoration: none;color:#ffffe5">rabokony@icloud.com</a><br/>
+                <a href="mailto:rabokony@icloud.com"
+                   style="text-decoration: none;color:#ffffe5">rabokony@icloud.com</a><br/>
                 <a href="https://github.com/Arhiiiip" title="Go to the developer's github"
                    style="text-decoration: none;color:#ffffe5">Go to the developer's github</a></p>
         </div>
-    </h:body>
+        <div class="footCol2" id="clock">
+            <div id="textTime">Local time:</div>
+            <div id="time">${timeBean.hour}:${timeBean.min}:${timeBean.sec} ${timeBean.day}.${timeBean.month}.${timeBean.year}</div>
+        </div>
+    </div>
 </f:view>
 </html>
