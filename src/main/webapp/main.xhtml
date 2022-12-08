@@ -6,10 +6,13 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
-<f:view>
+<f:view transient="true">
     <h:head>
         <title>Lab 3 Riabokon</title>
-        <h:outputScript library="js" src="jquery.js"/>
+        <script type="text/javascript" src="resources/js/jquery-3.6.0.js">
+        </script>
+        <h:outputScript library="js" name="time.js"/>
+        <h:outputScript library="js" name="click.js"/>
         <h:outputStylesheet library="styles" name="main.css"/>
     </h:head>
     <h:body id="base">
@@ -73,10 +76,12 @@
                     <line stroke="black" x1="197" x2="203" y1="290" y2="290"/>
                     <line stroke="black" x1="197" x2="203" y1="320" y2="320"/>
                     <line stroke="black" x1="197" x2="203" y1="350" y2="350"/>
-                    <!--- Shot shadow -->
+                    <!--                    Shot shadow -->
+
                     <ui:repeat value="#{hitBean.getHistory()}" var="data">
                         <circle r="3" cx="#{data.x*30 + 200}"
-                                cy="#{200 - data.y*30}" fill='#{data.result ? "#3D6C36FF" : "#FF0051FF"}'/>
+                                cy="#{200 - data.y*30}"
+                                fill='#{(data.r == hitBean.r)  ? (data.result  ? "#3D6C36FF" : "#FF0051FF") : ""}'/>
                     </ui:repeat>
                 </svg>
             </h:panelGroup>
@@ -101,9 +106,9 @@
                 </div>
                 <div id="yArgumentD">
                     <h:outputLabel>Y:
-                        <h:inputText a:placeholder="-5 ... 5" maxlength="6" value="#{hitBean.y}" required="true"
-                                     validatorMessage="ТЫ ЧО" styleClass="yArg" id="yArg">
-                            <f:ajax execute="@this" render="Yerrors"/>
+                        <h:inputText a:placeholder="-5 ... 5" maxlength="6" value="#{hitBean.y}" styleClass="yArg"
+                                     id="yArg">
+                            <f:ajax execute="@this" render="error"/>
                         </h:inputText>
                     </h:outputLabel>
                 </div>
@@ -111,56 +116,54 @@
                     <h:outputLabel>R:
                         <h:commandButton label="1" value="1" styleClass="rArg" class="unclicked"
                                          action="#{hitBean.setR(1)}">
-                            <f:ajax execute="@this" render="beanRadius graph"/>
+                            <f:ajax execute="@this" render="beanRadius beanRadius2 graph r_value"/>
                         </h:commandButton>
                         <h:commandButton label="1.5" value="1.5" styleClass="rArg" class="unclicked"
                                          action="#{hitBean.setR(1.5)}">
-                            <f:ajax execute="@this" render="beanRadius graph"/>
+                            <f:ajax execute="@this" render="beanRadius beanRadius2 graph r_value"/>
                         </h:commandButton>
                         <h:commandButton label="2" value="2" styleClass="rArg" class="unclicked"
                                          action="#{hitBean.setR(2)}">
-                            <f:ajax execute="@this" render="beanRadius graph"/>
+                            <f:ajax execute="@this" render="beanRadius beanRadius2 graph r_value"/>
                         </h:commandButton>
                         <h:commandButton label="2.5" value="2.5" styleClass="rArg" class="unclicked"
                                          action="#{hitBean.setR(2.5)}">
-                            <f:ajax execute="@this" render="beanRadius graph"/>
+                            <f:ajax execute="@this" render="beanRadius beanRadius2 graph r_value"/>
                         </h:commandButton>
                         <h:commandButton label="3" value="3" styleClass="rArg" class="unclicked"
                                          action="#{hitBean.setR(3)}">
-                            <f:ajax execute="@this" render="beanRadius graph"/>
+                            <f:ajax execute="@this" render="beanRadius beanRadius2 graph r_value"/>
                         </h:commandButton>
                     </h:outputLabel>
                 </div>
-                <div>
 
-                    <!--                    <p>-->
-                    <!--                        Y in (-5 ... 5)<br/>-->
-                    <!--                    </p>-->
-
-                    <h:messages id="Yerrors" style="width: 100%; color: red; margin-top: 10px"/>
-                    <h:messages id="Xerrors" style="width: 100%; color: red; margin-top: 10px"/>
-                </div>
-
-                <a class="error" id="error"/>
                 <h:inputHidden id="beanRadius" a:hidden="true" type="hidden" value="#{hitBean.r}"/>
+
+
+
+
                 <div>
-                    <!--                                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>-->
-                    <!--                                <h:inputHidden value="#{hitBean.y}" id="y_click" a:hidden="true"/>-->
                     <h:commandButton type="submit" styleClass="buttonData" id="buttonShoot" value="Shoot"
                                      action="#{hitBean.submit()}"><f:ajax execute="@form"
-                                                                          render="error_x error_y error_r graph historyTable"/></h:commandButton>
+                                                                          render="error graph historyTable"/></h:commandButton>
                 </div>
+            </h:form>
+            <h:form id="click">
+                <h:inputHidden value="#{hitBean.x}" id="x_click" a:hidden="true"/>
+                <h:inputHidden value="#{hitBean.y}" id="y_click" a:hidden="true"/>
+                <h:inputHidden value="#{hitBean.r}" id="r_click" a:hidden="true"/>
+                <h:commandButton a:hidden="true" id="sendHidden" value="Выстрел" action="#{hitBean.submitClick()}">
+                    <f:ajax execute="@form" render="error graph historyTable"/>
+                </h:commandButton>
             </h:form>
             <h:form id="formReset" name="form" method="post">
-                <div>
-                    <h:commandButton styleClass="buttonData" id="reset_table" value="Reset"
-                                     action="#{hitBean.resetHistory()}">
-                        <f:ajax execute="@form" render="historyTable graph"/>
-                    </h:commandButton>
-                </div>
+                <h:commandButton styleClass="buttonData" id="reset_table" value="Reset"
+                                 action="#{hitBean.resetHistory()}">
+                    <f:ajax execute="@form" render="historyTable graph error"/>
+                </h:commandButton>
             </h:form>
-            <div id="errors">
-                <h:panelGroup rendered="true" id="errorD">
+            <div>
+                <h:panelGroup rendered="true" id="error">
                     <div id="error_x">
                         <h:outputText value="#{hitBean.errorX.getMessage()}"/>
                     </div>
@@ -171,6 +174,9 @@
                         <h:outputText value="#{hitBean.errorR.getMessage()}"/>
                     </div>
                 </h:panelGroup>
+            </div>
+            <div>
+                R: <h:outputText id="r_value" value = "#{hitBean.getIsR()}"/>
             </div>
         </div>
     </h:body>

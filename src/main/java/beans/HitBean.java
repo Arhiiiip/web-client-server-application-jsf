@@ -4,6 +4,7 @@ package beans;
 import DAO.MyDAO;
 import back.CheckArea;
 import back.Validation;
+import data.MyError;
 import entity.Shots;
 import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 @ManagedBean(name = "hitBean")
@@ -18,6 +20,9 @@ import java.util.List;
 public class HitBean implements Serializable {
     private final Validation validation;
     private final CheckArea checkArea;
+
+    private String isR = "Not enter";
+
 
     @Inject
     MyDAO dataAO;
@@ -32,9 +37,9 @@ public class HitBean implements Serializable {
     private String y;
     private String r;
 
-    public static Error errorX = new Error("");
-    public static Error errorY = new Error("");
-    public static Error errorR = new Error("");
+    public static MyError errorX = new MyError("");
+    public static MyError errorY = new MyError("");
+    public static MyError errorR = new MyError("");
 
     private boolean correctX = false;
     private boolean correctY = false;
@@ -68,17 +73,17 @@ public class HitBean implements Serializable {
     }
 
     public void submitClick() {
+        System.out.println("Start sC");
+
         long start = System.nanoTime();
 
-//        HitBean hitBean = new HitBean();
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("r = " + r);
 
-        System.out.println(this.x);
-        System.out.println(this.y);
-        System.out.println(this.r);
-        double numericalX = Double.parseDouble(this.x);
-        double numericalY = Double.parseDouble(this.y);
-        double numericalR = Integer.parseInt(this.r);
-
+        double numericalX = Double.parseDouble(x);
+        double numericalY = Double.parseDouble(y);
+        double numericalR = Double.parseDouble(r);
 
         Shots shot = new Shots();
         shot.setX((float) numericalX);
@@ -88,7 +93,7 @@ public class HitBean implements Serializable {
         shot.setDuration((System.nanoTime() - start) / 1000);
         shot.setResult(checkArea.hit(numericalX, numericalY, numericalR));
         dataAO.addShot(shot);
-
+        System.out.println("Fnsh sC");
     }
 
     public void resetHistory() {
@@ -96,7 +101,9 @@ public class HitBean implements Serializable {
     }
 
     public List<Shots> getHistory() {
-        return dataAO.getAll();
+        List<Shots> sL = dataAO.getAll();
+        Collections.reverse(sL);
+        return sL;
     }
 
 
@@ -123,7 +130,16 @@ public class HitBean implements Serializable {
 
     public void setR(String r) {
         this.r = r;
+        isR = this.r;
         System.out.println("r = " + this.r);
+    }
+
+    public String getIsR() {
+        return isR;
+    }
+
+    public void setIsR(String isR) {
+        this.isR = isR;
     }
 
     public boolean getCorrectX() {

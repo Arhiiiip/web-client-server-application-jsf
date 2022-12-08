@@ -2,10 +2,10 @@ package data;
 
 import java.io.Serializable;
 
-public class Error implements Serializable {
+public class MyError implements Serializable {
     private String message;
 
-    public Error(String message){
+    public MyError(String message){
         this.message = message;
     }
 

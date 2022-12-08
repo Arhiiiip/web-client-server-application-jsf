@@ -1,6 +1,7 @@
 package back;
 
 import beans.HitBean;
+import data.MyError;
 
 import java.io.Serializable;
 
@@ -12,15 +13,15 @@ public class Validation implements IValidation, Serializable {
             doubleX = Double.parseDouble(x);
             if (doubleX > 7 || doubleX < -7) {
                 doubleX = null;
-                HitBean.errorX = new Error("Поле X должно быть от -7 до 7.");
+                HitBean.errorX = new MyError("Поле X должно быть от -7 до 7.");
             }
         } catch (NumberFormatException exception) {
-            HitBean.errorX = new Error("Поле X должно быть числом.");
+            HitBean.errorX = new MyError("Поле X должно быть числом.");
         } catch (NullPointerException exception) {
-            HitBean.errorX = new Error("Поле X не введено.");
+            HitBean.errorX = new MyError("Поле X не введено.");
         }
         if (doubleX != null) {
-            HitBean.errorX = new Error("");
+            HitBean.errorX = new MyError("");
         }
         return doubleX;
     }
@@ -32,17 +33,17 @@ public class Validation implements IValidation, Serializable {
             doubleY = Double.parseDouble(y);
             if (doubleY > 5 || doubleY < -5) {
                 doubleY = null;
-                HitBean.errorY = new Error("Поле Y должно быть от -5 до 5.");
+                HitBean.errorY = new MyError("Поле Y должно быть от -5 до 5.");
             }
         } catch (NumberFormatException exception) {
             if (y.equals("")) {
-                HitBean.errorY = new Error("Поле Y не введено.");
+                HitBean.errorY = new MyError("Поле Y не введено.");
             } else {
-                HitBean.errorY = new Error("Поле Y должно быть числом.");
+                HitBean.errorY = new MyError("Поле Y должно быть числом.");
             }
         } catch (NullPointerException ignored) {}
         if (doubleY != null) {
-            HitBean.errorY = new Error("");
+            HitBean.errorY = new MyError("");
         }
         return doubleY;
     }
@@ -51,22 +52,22 @@ public class Validation implements IValidation, Serializable {
     public Double validateR(String r) {
         Double dR = null;
         if (r == "") {
-            HitBean.errorR = new Error("Поле R не введено.");
+            HitBean.errorR = new MyError("Поле R не введено.");
             return dR;
         }
         try {
             dR = Double.parseDouble(r);
             if (dR > 3 || dR < 1) {
                 dR = null;
-                HitBean.errorR = new Error("Поле R должно быть от 1 до 3.");
+                HitBean.errorR = new MyError("Поле R должно быть от 1 до 3.");
             }
         } catch (NumberFormatException exception) {
-            HitBean.errorR = new Error("Поле R должно быть числом.");
+            HitBean.errorR = new MyError("Поле R должно быть числом.");
         } catch (NullPointerException exception) {
-            HitBean.errorR = new Error("Поле R не введено.");
+            HitBean.errorR = new MyError("Поле R не введено.");
         }
         if (dR != null) {
-            HitBean.errorR = new Error("");
+            HitBean.errorR = new MyError("");
         }
         return dR;
     }

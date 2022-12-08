@@ -14,25 +14,33 @@
 
 }
 
-#nextPageButton {
-    position: absolute;
-    right: 32.5%;
-    font-size: 150%;
-    width: 35%;
-    height: 9%;
-    margin-top: 5%;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    padding: .5em 2em;
-    outline: none;
-    border-width: 2px 0;
-    border-style: solid none;
-    border-color: #FDBE33 #000 #D77206;
-    border-radius: 6px;
-    background: linear-gradient(#F3AE0F, #E38916) #E38916;
-    transition: 0.2s;
+.buttonData:hover {
+    background: linear-gradient(#f5ae00, #f59500) #f5ae00;
 }
+
+.buttonData:active {
+    background: linear-gradient(#f59500, #f5ae00) #f59500;
+}
+
+/*#nextPageButton {*/
+/*    position: absolute;*/
+/*    right: 32.5%;*/
+/*    font-size: 150%;*/
+/*    width: 35%;*/
+/*    height: 9%;*/
+/*    margin-top: 5%;*/
+/*    display: inline-block;*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*    padding: .5em 2em;*/
+/*    outline: none;*/
+/*    border-width: 2px 0;*/
+/*    border-style: solid none;*/
+/*    border-color: #FDBE33 #000 #D77206;*/
+/*    border-radius: 6px;*/
+/*    background: linear-gradient(#F3AE0F, #E38916) #E38916;*/
+/*    transition: 0.2s;*/
+/*}*/
 
 .yArg {
     border-radius:5px;

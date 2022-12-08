@@ -11,10 +11,6 @@
     color: #fff;
 }
 
-#clock {
-
-}
-
 .nextPageButton {
     position: absolute;
     right: 32.5%;
@@ -35,18 +31,13 @@
     transition: 0.2s;
 }
 
-#time,#textTime {
-    font-size: 25px;
-    font-family: monospace;
+#nextPageButton:hover {
+    background: linear-gradient(#f5ae00, #f59500) #f5ae00;
 }
 
-/*commandButton:hover {*/
-/*    background: linear-gradient(#f5ae00, #f59500) #f5ae00;*/
-/*}*/
-
-/*commandButton:active {*/
-/*    background: linear-gradient(#f59500, #f5ae00) #f59500;*/
-/*}*/
+#nextPageButton:active {
+    background: linear-gradient(#f59500, #f5ae00) #f59500;
+}
 
 
 #header>a {

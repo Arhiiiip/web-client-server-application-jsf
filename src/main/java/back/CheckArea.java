@@ -19,7 +19,7 @@ public class CheckArea implements ICheckArea, Serializable {
     @Override
     public boolean hitSquare(double x, double y, double r) {
         if ((x <= 0) && (y >= 0)){
-            return (-x <= r && y<=r/2);
+            return (-x <= 2 * r && y <= r);
         }
         else return false;
     }
@@ -27,7 +27,9 @@ public class CheckArea implements ICheckArea, Serializable {
     @Override
     public boolean hitTriangle(double x, double y, double r) {
         if ((x <= 0) && (y <= 0)){
-            return (y >= -2 * x - r);
+            boolean res = (y >= -2 * x - r * 2);
+            System.out.println(res);
+                return (y >= -2 * x - r * 2);
         } else return false;
     }
 }

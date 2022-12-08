@@ -7,14 +7,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Start Lab 3 Riabokon</title>
-    <h:outputScript library="js" src="jquery.js"/>
-    <h:outputStylesheet library="js" name="time.js"/>
+    <script type="text/javascript" src="resources/js/jquery-3.6.0.js"></script>
+    <h:outputScript library="js" name="time.js"/>
     <h:outputStylesheet library="styles" name="start.css"/>
     <h:outputStylesheet library="styles" name="clock2.css"/>
 
     <!--    <h:link rel="icon" href="resources/img/favicon.ico"/>-->
 </h:head>
-<f:view>
+<f:view transient="true">
     <h:body id="base">
         <div id="header">
             <a>
@@ -29,7 +29,7 @@
         </div>
 
         <h:form id="form">
-            <h:commandButton styleClass="nextPageButton" id="nextPageButton" action="MainPage" value="Go to school"/>
+            <h:commandButton styleClass="nextPageButton" id="nextPageButton" action="MainPage" value="Shooting"/>
         </h:form>
 
         <div id="continueButton">

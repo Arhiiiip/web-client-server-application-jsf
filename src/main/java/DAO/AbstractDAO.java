@@ -11,12 +11,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public abstract class AbstractDAO<T> implements DAO<T> {
+    @PersistenceContext
+    EntityManager entityManager;
 
-    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("shots");
-    static EntityManager entityManager = emf.createEntityManager();
-
-//    @PersistenceContext()
-//    EntityManager entityManager;
+//    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("shots");
+//    static EntityManager entityManager = emf.createEntityManager();
 //    @PersistenceUnit
 //    private EntityManagerFactory managerFactory;
 
@@ -38,12 +37,13 @@ public abstract class AbstractDAO<T> implements DAO<T> {
     }
 
     @Override
+    @Transactional
     public List<T> getAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
         query.select(query.from(clazz));
         hits = entityManager.createQuery(query).getResultList();
-        System.out.println("g All");
+//        System.out.println("g All");
         return hits;
     }
 
